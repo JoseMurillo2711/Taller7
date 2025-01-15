@@ -24,5 +24,17 @@ class OperationsTest {
         assertThrows(NullPointerException.class, () -> { Operations.Solve(formula); }, "La función Solve no debería ser null."); 
     }
 
+    @Test
+    void testWithOrderOfOperations() {
+    String result = Operations.Solve("2+3*4");
+    assertEquals("2+3*4=14", result, "El cálculo no se ejecutó de forma correcta");
+    }
+
+    @Test
+    void testWithDivisionByZero() {
+    Exception exception = assertThrows(ArithmeticException.class, () -> Operations.Solve("8/0"));
+    assertTrue(exception.getMessage().contains("/ by zero"), "No se lanzó la excepción esperada al dividir por cero.");
+    }
+
 
 }
